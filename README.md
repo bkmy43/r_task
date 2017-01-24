@@ -1,4 +1,4 @@
-# Assignment task by researchgate
+# Coding Challenge by Researchgate
 
 ##Task
 Sample streamed characters
