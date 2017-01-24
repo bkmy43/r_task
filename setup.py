@@ -6,6 +6,5 @@ setup(
    description='Research gate assesment task',
    author='Ilya Vladimirskiy',
    author_email='bkmy43@googlemail.com',
-   # packages=['foo'],  #same as name
-   install_requires=['click',], #external packages as dependencies
+   install_requires=['click',],
 )
