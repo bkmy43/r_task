@@ -23,10 +23,14 @@ Should something about the challenge be unclear please make an assumption and do
 ##Example
 
 Given a sample size of 5 and the following stream of characters as values:
+```
 THEQUICKBROWNFOXJUMPSOVERTHELAZYDOG
+```
 
 A possible random sample could be:
+```
 EMETN
+```
 
 Desired execution and output for piped processing
 ```
