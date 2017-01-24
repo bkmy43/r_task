@@ -1,4 +1,4 @@
-# Coding Challenge by Researchgate
+# Coding Challenge by R 
 
 ##Task
 Sample streamed characters
