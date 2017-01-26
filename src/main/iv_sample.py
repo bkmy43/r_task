@@ -1,17 +1,18 @@
-__author__ = "Ilya Vladimirskiy"
-__email__ = "bkmy43@googlemail.com"
-
 import sys
 import click
 import logging
 import random
+
+__author__ = "Ilya Vladimirskiy"
+__email__ = "bkmy43@googlemail.com"
 
 LOGGER = logging.getLogger(__name__)
 
 
 @click.command()
 @click.option('--input_mode',
-              help='input channel to use. You can choose between 3 options: ''stdin'', ''random'' and ''api'' (default: stdin)',
+              help='input channel to use. You can choose between 3 options: ''stdin'', \
+                   ''random'' and ''api'' (default: stdin)',
               type=str,
               default='stdin')
 @click.option('--sample_size',
@@ -19,7 +20,8 @@ LOGGER = logging.getLogger(__name__)
               type=int,
               default=10)
 @click.option('--skip_newline_characters',
-              help='if set to true, the script will ignore "\n" characters in the input, assuming they are not part of the input data (default: True)',
+              help='if set to true, the script will ignore "\n" characters in the input, assuming they \
+                    are not part of the input data (default: True)',
               type=bool,
               default=True)
 @click.option('--verbose',
@@ -30,14 +32,14 @@ LOGGER = logging.getLogger(__name__)
 def main(input_mode, sample_size, skip_newline_characters, verbose):
     """Simple program that does sampling over data stream. You need to specify input channel, size of the sample and a few
     minor parameters: if it should ignore \n characters and if you want debug information to be displayed.
-
     Please contact me using bkmy43@googlemail.com if you need any assistance or support with this software"""
     if verbose:
         logging.basicConfig(level=logging.DEBUG)
     else:
         logging.basicConfig(level=logging.INFO)
 
-    LOGGER.info('*** Research gate programming assignment: "Random Sampling over Data Streams" by Ilya Vladimirskiy Jan 2017 ***')
+    LOGGER.info('*** Research gate programming assignment: "Random Sampling over Data Streams" ' +
+                'by Ilya Vladimirskiy Jan 2017 ***')
     LOGGER.debug('input_mode = %s', input_mode)
     LOGGER.debug('sample_size = %s', sample_size)
     LOGGER.debug('verbose = %s', verbose)
@@ -65,7 +67,8 @@ def main(input_mode, sample_size, skip_newline_characters, verbose):
             char_count += 1
 
     if char_count < sample_size:
-        LOGGER.error('Not enoupth data in input stream to do sampling ({} characters too few)... exiting'.format(sample_size - char_count))
+        LOGGER.error('Not enoupth data in input stream to do sampling ' +
+                     '({} characters too few)... exiting'.format(sample_size - char_count))
         return False
     else:
         LOGGER.info('Resulting sample: {}'.format(''.join(sample)))
@@ -73,4 +76,3 @@ def main(input_mode, sample_size, skip_newline_characters, verbose):
 
 if __name__ == '__main__':
     main()
-
