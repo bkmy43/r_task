@@ -2,6 +2,7 @@ import sys
 import click
 import logging
 import random
+from memory_profiler import memory_usage
 
 __author__ = "Ilya Vladimirskiy"
 __email__ = "bkmy43@googlemail.com"
@@ -30,8 +31,8 @@ LOGGER = logging.getLogger(__name__)
               default=False)
 
 def main(input_mode, sample_size, skip_newline_characters, verbose):
-    """Simple program that does sampling over data stream. You need to specify input channel, size of the sample and a few
-    minor parameters: if it should ignore \n characters and if you want debug information to be displayed.
+    """Simple program that does sampling over data stream. You need to specify input channel, size of the sample and
+    two system parameters: if it should ignore \n characters and if you want debug information to be displayed.
     Please contact me using bkmy43@googlemail.com if you need any assistance or support with this software"""
     if verbose:
         logging.basicConfig(level=logging.DEBUG)
@@ -44,14 +45,18 @@ def main(input_mode, sample_size, skip_newline_characters, verbose):
     LOGGER.debug('sample_size = %s', sample_size)
     LOGGER.debug('verbose = %s', verbose)
 
-    sample = [None] * sample_size
-    char_count = 0
-
     if input_mode == 'stdin':
         source = sys.stdin
     else:
         LOGGER.error('Input mode %s is not implemented yet... exiting', input_mode)
         return False
+
+    memory_used = memory_usage( random_sampling(sample_size, skip_newline_characters, source) )
+    LOGGER.info('Memory used: {}'.format(memory_used))
+
+def random_sampling(sample_size, skip_newline_characters, source):
+    sample = [None] * sample_size
+    char_count = 0
 
     for line in source:
         LOGGER.debug('input line = %s', line)
